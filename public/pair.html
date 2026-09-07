@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FREEZER MD | PAIR CODE</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Emerald & Matrix Green Palette */
+            --primary: #10b981;
+            --primary-glow: #059669;
+            --secondary: #34d399;
+            --accent: #00ff88;
+
+            --text: #ffffff;
+            --text-light: rgba(255, 255, 255, 0.72);
+
+            --background: #030a06;
+
+            --glass: rgba(16, 185, 129, 0.05);
+            --glass-strong: rgba(16, 185, 129, 0.12);
+            --glass-border: rgba(52, 211, 153, 0.25);
+
+            --success: #10b981;
+            --error: #ff453a;
+
+            --shadow:
+                0 25px 70px rgba(0, 0, 0, 0.7),
+                0 0 40px rgba(16, 185, 129, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "SF Pro Display",
+                "Poppins",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(16, 185, 129, 0.25),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(52, 211, 153, 0.15),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(5, 150, 105, 0.2),
+                    transparent 40%
+                ),
+                var(--background);
+
+            color: var(--text);
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            line-height: 1.6;
+            padding: 30px 18px;
+
+            overflow-x: hidden;
+
+            position: relative;
+        }
+
+        /* Ambient glow */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: -3;
+        }
+
+        body::before {
+            background: rgba(16, 185, 129, 0.25);
+            top: -100px;
+            left: -100px;
+            animation: ambientOne 10s ease-in-out infinite alternate;
+        }
+
+        body::after {
+            background: rgba(0, 255, 136, 0.15);
+            right: -100px;
+            bottom: -100px;
+            animation: ambientTwo 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes ambientOne {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(70px, 50px) scale(1.2); }
+        }
+
+        @keyframes ambientTwo {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(-60px, -40px) scale(1.25); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(52, 211, 153, 0.4);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.8);
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(110vh) scale(0.5);
+                opacity: 0;
+            }
+            15% { opacity: 1; }
+            85% { opacity: 0.6; }
+            100% {
+                transform: translateY(-120vh) rotate(360deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Home button */
+        .home-btn {
+            position: fixed;
+            top: 22px;
+            right: 22px;
+
+            background: rgba(16, 185, 129, 0.12);
+            color: white;
+
+            padding: 12px 20px;
+            border-radius: 999px;
+
+            font-weight: 600;
+            text-decoration: none;
+
+            border: 1px solid var(--glass-border);
+
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
+
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+            z-index: 100;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            transition: var(--transition);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: rgba(16, 185, 129, 0.3);
+            border-color: var(--accent);
+            box-shadow:
+                0 18px 45px rgba(16, 185, 129, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main glass container */
+        .container {
+            width: 100%;
+            max-width: 480px;
+
+            padding: 40px 32px;
+            text-align: center;
+            position: relative;
+            border-radius: 32px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(16, 185, 129, 0.1),
+                    rgba(3, 10, 6, 0.7)
+                );
+
+            border: 1px solid var(--glass-border);
+
+            backdrop-filter: blur(35px) saturate(170%);
+            -webkit-backdrop-filter: blur(35px) saturate(170%);
+
+            box-shadow: var(--shadow);
+
+            overflow: hidden;
+
+            animation: containerIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes containerIn {
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Glass highlights */
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -40%;
+            left: -40%;
+            width: 180%;
+            height: 90%;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(255, 255, 255, 0.15),
+                    transparent 35%,
+                    transparent 65%,
+                    rgba(16, 185, 129, 0.15)
+                );
+
+            transform: rotate(-12deg);
+            pointer-events: none;
+        }
+
+        .container::after {
+            content: "";
+            position: absolute;
+            inset: 1px;
+            border-radius: 31px;
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+            pointer-events: none;
+        }
+
+        /* Logo */
+        .logo {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 22px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo::before {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+
+            background:
+                conic-gradient(
+                    from 0deg,
+                    var(--primary),
+                    var(--accent),
+                    #059669,
+                    var(--primary)
+                );
+
+            filter: blur(14px);
+            opacity: 0.7;
+            animation: logoGlow 5s linear infinite;
+        }
+
+        .logo img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+
+            border: 3px solid rgba(52, 211, 153, 0.5);
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(16, 185, 129, 0.3);
+
+            animation: logoFloat 4s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes logoGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Heading */
+        h1 {
+            position: relative;
+            z-index: 2;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 2.1rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+
+            background: linear-gradient(135deg, #ffffff 10%, #a7f3d0 50%, #00ff88 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        p {
+            position: relative;
+            z-index: 2;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-size: 0.98rem;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 22px;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .input-container i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+            z-index: 3;
+            font-size: 1.1rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 16px 16px 16px 50px;
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+
+            background: rgba(0, 0, 0, 0.35);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                0 8px 25px rgba(0, 0, 0, 0.2);
+
+            transition: var(--transition);
+        }
+
+        input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.38);
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent);
+            background: rgba(16, 185, 129, 0.08);
+
+            box-shadow:
+                0 0 0 4px rgba(16, 185, 129, 0.2),
+                0 12px 30px rgba(16, 185, 129, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        /* Main button */
+        .btn {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 16px;
+            border: 1px solid rgba(52, 211, 153, 0.4);
+            border-radius: 18px;
+            cursor: pointer;
+
+            font-size: 1rem;
+            font-weight: 700;
+            color: #030a06;
+
+            background: linear-gradient(135deg, #10b981, #34d399, #00ff88);
+
+            box-shadow:
+                0 15px 35px rgba(16, 185, 129, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 70%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.4),
+                    transparent
+                );
+
+            transform: skewX(-20deg);
+            transition: 0.7s;
+        }
+
+        .btn:hover::before {
+            left: 150%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow:
+                0 20px 45px rgba(16, 185, 129, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Result */
+        #result {
+            position: relative;
+            z-index: 2;
+            margin-top: 22px;
+            padding: 24px;
+            border-radius: 22px;
+            display: none;
+            animation: resultIn 0.5s ease-out;
+            text-align: center;
+            font-weight: 500;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(16, 185, 129, 0.15),
+                    rgba(0, 0, 0, 0.4)
+                );
+
+            border: 1px solid var(--glass-border);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes resultIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        #result p {
+            margin-bottom: 8px;
+        }
+
+        /* Pair code */
+        #pair-code {
+            display: inline-block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #00ff88;
+            margin: 10px 0 15px;
+            padding: 12px 22px;
+            letter-spacing: 4px;
+            border-radius: 16px;
+
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(52, 211, 153, 0.4);
+
+            box-shadow:
+                0 10px 30px rgba(16, 185, 129, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+            animation: codeGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes codeGlow {
+            from {
+                box-shadow:
+                    0 10px 25px rgba(16, 185, 129, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+            to {
+                box-shadow:
+                    0 10px 40px rgba(0, 255, 136, 0.5),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        /* Loading spinner */
+        #loading-spinner {
+            display: none;
+            margin: 25px 0;
+        }
+
+        .spinner {
+            width: 45px;
+            height: 45px;
+            margin: 0 auto;
+
+            border: 3px solid rgba(255, 255, 255, 0.12);
+            border-top: 3px solid var(--secondary);
+            border-right: 3px solid var(--accent);
+
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.3);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Action buttons */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+
+            transition: var(--transition);
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: #030a06;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(16, 185, 129, 0.45);
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: white;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .back-btn:hover {
+            background: rgba(16, 185, 129, 0.15);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        /* Messages */
+        .error-message {
+            color: #ff6b65;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            display: none;
+            animation: shake 0.5s;
+        }
+
+        .success-message {
+            color: #34d399;
+            margin-top: 15px;
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            body { padding: 20px 14px; }
+            .container { padding: 32px 20px; border-radius: 28px; }
+            .container::after { border-radius: 27px; }
+            .logo { width: 92px; height: 92px; }
+            h1 { font-size: 1.6rem; }
+            .home-btn { top: 14px; right: 14px; padding: 9px 15px; font-size: 0.85rem; }
+            .action-buttons { flex-direction: column; }
+            #pair-code { font-size: 1.5rem; }
+        }
+
+        @media (min-width: 481px) {
+            .container { margin-top: 15px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Home -->
+    <a href="./" class="home-btn">
+        <i class="fas fa-house"></i>
+        Home
+    </a>
+
+    <!-- Main Glass Card -->
+    <div class="container">
+
+        <div class="logo">
+            <img
+                src="https://files.catbox.moe/2fsb5r.jpg"
+                alt="FREEZER MD"
+            >
+        </div>
+
+        <h1>FREEZER PAIR CODE</h1>
+
+        <p>
+            Enter your WhatsApp number without the
+            <strong>+</strong> sign
+        </p>
+
+        <div class="form-group">
+
+            <label for="phone-number">
+                Phone Number
+            </label>
+
+            <div class="input-container">
+
+                <i class="fas fa-mobile-screen-button"></i>
+
+                <input
+                    type="text"
+                    id="phone-number"
+                    placeholder="e.g., 2547xxxxxxxx"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    autocomplete="tel"
+                >
+
+            </div>
+
+            <div
+                class="error-message"
+                id="error-message"
+            >
+                Please enter a valid phone number
+                (10-15 digits)
+            </div>
+
+        </div>
+
+        <button id="submit" class="btn">
+
+            <span id="btn-text">
+                <i class="fas fa-link"></i>
+                GET CODE
+            </span>
+
+            <span
+                id="btn-spinner"
+                style="display: none;"
+            >
+                <i class="fas fa-spinner fa-spin"></i>
+                GENERATING...
+            </span>
+
+        </button>
+
+        <div
+            id="loading-spinner"
+            class="spinner"
+        ></div>
+
+        <!-- Result -->
+        <div id="result">
+
+            <p>
+                Your pairing code is:
+            </p>
+
+            <div id="pair-code"></div>
+
+            <p>
+                Enter this code in your WhatsApp
+                linked devices
+            </p>
+
+            <div class="action-buttons">
+
+                <button
+                    id="copy-btn"
+                    class="action-btn copy-btn"
+                >
+                    <i class="fas fa-copy"></i>
+                    COPY CODE
+                </button>
+
+                <a
+                    href="./"
+                    class="action-btn back-btn"
+                >
+                    <i class="fas fa-arrow-left"></i>
+                    BACK
+                </a>
+
+            </div>
+
+            <div
+                class="success-message"
+                id="success-message"
+            >
+                <i class="fas fa-circle-check"></i>
+                Code copied to clipboard!
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+
+    <script>
+
+        /* ============================
+           FLOATING GLASS PARTICLES
+        ============================ */
+
+        function createParticles() {
+
+            const particlesContainer =
+                document.getElementById('particles');
+
+            const particleCount =
+                window.innerWidth < 768 ? 16 : 30;
+
+            for (let i = 0; i < particleCount; i++) {
+
+                const particle =
+                    document.createElement('div');
+
+                particle.classList.add('particle');
+
+                const size =
+                    Math.random() * 7 + 3;
+
+                particle.style.width =
+                    `${size}px`;
+
+                particle.style.height =
+                    `${size}px`;
+
+                particle.style.left =
+                    `${Math.random() * 100}%`;
+
+                particle.style.top =
+                    `${Math.random() * 100}%`;
+
+                const duration =
+                    Math.random() * 15 + 12;
+
+                particle.style.animationDuration =
+                    `${duration}s`;
+
+                particle.style.animationDelay =
+                    `${Math.random() * 8}s`;
+
+                particle.style.opacity =
+                    Math.random() * 0.45 + 0.1;
+
+                particlesContainer.appendChild(
+                    particle
+                );
+            }
+        }
+
+        createParticles();
+
+
+        /* ============================
+           ELEMENTS
+        ============================ */
+
+        const submitButton =
+            document.getElementById('submit');
+
+        const phoneNumberInput =
+            document.getElementById('phone-number');
+
+        const resultDiv =
+            document.getElementById('result');
+
+        const pairCodeDiv =
+            document.getElementById('pair-code');
+
+        const copyButton =
+            document.getElementById('copy-btn');
+
+        const errorMessage =
+            document.getElementById('error-message');
+
+        const successMessage =
+            document.getElementById('success-message');
+
+        const btnText =
+            document.getElementById('btn-text');
+
+        const btnSpinner =
+            document.getElementById('btn-spinner');
+
+        const loadingSpinner =
+            document.getElementById('loading-spinner');
+
+
+        /* ============================
+           PHONE VALIDATION
+        ============================ */
+
+        function validatePhoneNumber(number) {
+
+            const cleaned =
+                number.replace(/\D/g, '');
+
+            return (
+                cleaned.length >= 10 &&
+                cleaned.length <= 15
+            );
+        }
+
+
+        /* ============================
+           GET PAIR CODE
+        ============================ */
+
+        submitButton.addEventListener(
+            'click',
+            async (e) => {
+
+                e.preventDefault();
+
+                const phoneNumber =
+                    phoneNumberInput.value.trim();
+
+                if (
+                    !validatePhoneNumber(
+                        phoneNumber
+                    )
+                ) {
+
+                    errorMessage.style.display =
+                        'block';
+
+                    errorMessage.style.animation =
+                        'shake 0.5s';
+
+                    setTimeout(() => {
+
+                        errorMessage.style.animation =
+                            '';
+
+                    }, 500);
+
+                    return;
+                }
+
+                errorMessage.style.display =
+                    'none';
+
+                btnText.style.display =
+                    'none';
+
+                btnSpinner.style.display =
+                    'inline-block';
+
+                submitButton.disabled =
+                    true;
+
+                try {
+
+                    /*
+                     * ORIGINAL API ENDPOINT
+                     * MAINTAINED
+                     */
+
+                    const { data } =
+                        await axios.get(
+                            `/code?number=${phoneNumber}`
+                        );
+
+                    const code =
+                        data.code || "ERROR";
+
+                    pairCodeDiv.textContent =
+                        code;
+
+                    resultDiv.style.display =
+                        'block';
+
+                    resultDiv.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+
+                } catch (error) {
+
+                    pairCodeDiv.textContent =
+                        "SERVICE ERROR";
+
+                    resultDiv.style.display =
+                        'block';
+
+                    console.error(
+                        "Error:",
+                        error
+                    );
+
+                } finally {
+
+                    btnText.style.display =
+                        'inline-block';
+
+                    btnSpinner.style.display =
+                        'none';
+
+                    submitButton.disabled =
+                        false;
+                }
+            }
+        );
+
+
+        /* ============================
+           COPY PAIR CODE
+        ============================ */
+
+        copyButton.addEventListener(
+            'click',
+            () => {
+
+                const code =
+                    pairCodeDiv.textContent;
+
+                navigator.clipboard
+                    .writeText(code)
+                    .then(() => {
+
+                        successMessage.style.display =
+                            'block';
+
+                        setTimeout(() => {
+
+                            successMessage.style.display =
+                                'none';
+
+                        }, 2000);
+
+                    })
+                    .catch(() => {
+
+                        /* Fallback */
+                        const textarea =
+                            document.createElement(
+                                'textarea'
+                            );
+
+                        textarea.value = code;
+
+                        document.body.appendChild(
+                            textarea
+                        );
+
+                        textarea.select();
+
+                        document.execCommand(
+                            'copy'
+                        );
+
+                        textarea.remove();
+
+                        successMessage.style.display =
+                            'block';
+
+                        setTimeout(() => {
+
+                            successMessage.style.display =
+                                'none';
+
+                        }, 2000);
+                    });
+            }
+        );
+
+
+        /* ============================
+           PHONE INPUT
+        ============================ */
+
+        phoneNumberInput.addEventListener(
+            'input',
+            (e) => {
+
+                e.target.value =
+                    e.target.value.replace(
+                        /\D/g,
+                        ''
+                    );
+
+                if (
+                    errorMessage.style.display ===
+                    'block'
+                ) {
+
+                    errorMessage.style.display =
+                        'none';
+                }
+            }
+        );
+
+
+        /* ============================
+           ENTER KEY SUPPORT
+        ============================ */
+
+        phoneNumberInput.addEventListener(
+            'keydown',
+            (e) => {
+
+                if (e.key === 'Enter') {
+                    submitButton.click();
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
