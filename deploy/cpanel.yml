@@ -1,0 +1,13 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/your-cpanel-path/popkid-session/public_html/
+    - /bin/cp -R images $DEPLOYPATH
+    
+
+
+
+
+
+
+
