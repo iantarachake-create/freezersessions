@@ -1,0 +1,28 @@
+{
+  "name": "popkid-session",
+  "main": "./index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "start": "pm2-runtime start index.js --name popkidsess",
+    "stop": "pm2 stop popkidsess",
+    "restart": "pm2 restart popkidsess"
+  },
+  "author": "Popkid Tech",
+  "license": "GPL-3.0 license",
+  "dependencies": {
+    "@whiskeysockets/baileys": "npm:baileys@6.7.21",
+    "bcryptjs": "^3.0.2",
+    "gifted-btns": "*",
+    "body-parser": "*",
+    "express": "*",
+    "fs": "*",
+    "path": "*",
+    "pino": "*",
+    "pino-pretty": "^13.0.0",
+    "pm2": "*",
+    "qrcode": "*"
+  }
+}
