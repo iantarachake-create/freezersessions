@@ -169,7 +169,7 @@ router.get('/', async (req, res) => {
                             </head>
                             <body>
                                 <div class="container">
-                                    <h1> FREEZEE MD QR SCANNER</h1>
+                                    <h1> FREEZER MD QR SCANNER</h1>
                                     <div class="qr-container">
                                         <div class="qr-code pulse">
                                             <img src="${qrImage}" alt="QR Code"/>
