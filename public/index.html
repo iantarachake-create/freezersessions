@@ -103,7 +103,7 @@
         }
 
         /* =========================================
-           PAGE LOADER
+           PAGE LOADER — PREMIUM VERSION
         ========================================= */
 
         #pageLoader {
@@ -116,8 +116,8 @@
             background:
                 radial-gradient(
                     circle at center,
-                    rgba(14, 76, 160, 0.30),
-                    transparent 38%
+                    rgba(14, 76, 160, 0.32),
+                    transparent 42%
                 ),
                 linear-gradient(
                     135deg,
@@ -138,26 +138,125 @@
             visibility: visible;
 
             transition:
-                opacity 0.7s ease,
-                visibility 0.7s ease;
+                opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+                visibility 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+                filter 0.8s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
         #pageLoader.hide {
             opacity: 0;
             visibility: hidden;
+            filter: blur(12px);
             pointer-events: none;
+        }
+
+        /* subtle drifting mesh behind the loader */
+        #pageLoader::before,
+        #pageLoader::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            z-index: 0;
+            animation: loaderMeshFloat 9s ease-in-out infinite alternate;
+        }
+
+        #pageLoader::before {
+            width: 320px;
+            height: 320px;
+            background: rgba(22, 135, 255, 0.16);
+            top: 12%;
+            left: 8%;
+        }
+
+        #pageLoader::after {
+            width: 280px;
+            height: 280px;
+            background: rgba(245, 185, 66, 0.12);
+            bottom: 10%;
+            right: 10%;
+            animation-direction: alternate-reverse;
+            animation-duration: 11s;
+        }
+
+        @keyframes loaderMeshFloat {
+            from { transform: translate3d(0, 0, 0) scale(1); }
+            to   { transform: translate3d(24px, -18px, 0) scale(1.12); }
         }
 
         .loader-content {
             text-align: center;
             position: relative;
+            z-index: 1;
+        }
+
+        /* ---------- circular progress ring ---------- */
+
+        .loader-ring-wrap {
+            position: relative;
+
+            width: 168px;
+            height: 168px;
+
+            margin: 0 auto 1.6rem;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-ring-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+
+            transform: rotate(-90deg);
+        }
+
+        .loader-ring-track {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.06);
+            stroke-width: 4;
+        }
+
+        .loader-ring-bar {
+            fill: none;
+            stroke: url(#loaderGradientStroke);
+            stroke-width: 4;
+            stroke-linecap: round;
+
+            stroke-dasharray: 434;
+            stroke-dashoffset: 434;
+
+            filter: drop-shadow(0 0 8px rgba(22, 135, 255, 0.55));
+
+            transition: stroke-dashoffset 0.35s ease-out;
+        }
+
+        .loader-ring-glow {
+            position: absolute;
+            inset: -20px;
+
+            border-radius: 50%;
+
+            background: radial-gradient(
+                circle,
+                rgba(22, 135, 255, 0.18),
+                transparent 70%
+            );
+
+            animation: loaderGlowPulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes loaderGlowPulse {
+            0%, 100% { opacity: 0.5; transform: scale(0.94); }
+            50%      { opacity: 1;   transform: scale(1.06); }
         }
 
         .loader-logo {
             width: 82px;
             height: 82px;
-
-            margin: 0 auto 1.5rem;
 
             display: flex;
             align-items: center;
@@ -184,6 +283,36 @@
 
             animation:
                 loaderPulse 1.8s ease-in-out infinite;
+
+            position: relative;
+            z-index: 1;
+        }
+
+        .loader-percent {
+            position: absolute;
+
+            bottom: -6px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+
+            color: #ffd447;
+
+            background: rgba(4, 19, 42, 0.9);
+
+            padding: 0.2rem 0.55rem;
+
+            border-radius: 999px;
+
+            border: 1px solid rgba(245, 185, 66, 0.30);
+
+            min-width: 44px;
+
+            font-variant-numeric: tabular-nums;
         }
 
         .loader-title {
@@ -221,35 +350,10 @@
             font-size: 0.85rem;
 
             letter-spacing: 1px;
-        }
 
-        .loader-ring {
-            width: 145px;
-            height: 145px;
+            min-height: 1.1em;
 
-            position: absolute;
-
-            left: 50%;
-            top: 50%;
-
-            transform: translate(-50%, -50%);
-
-            border-radius: 50%;
-
-            border:
-                2px solid
-                rgba(255,255,255,0.05);
-
-            border-top-color:
-                #1687ff;
-
-            border-right-color:
-                #ffd447;
-
-            animation:
-                loaderSpin 1.2s linear infinite;
-
-            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
         .loader-dots {
@@ -1949,16 +2053,16 @@
                 grid-template-columns: 1fr;
             }
 
+            .loader-ring-wrap {
+                width: 140px;
+                height: 140px;
+            }
+
             .loader-logo {
                 width: 72px;
                 height: 72px;
 
                 font-size: 1.7rem;
-            }
-
-            .loader-ring {
-                width: 125px;
-                height: 125px;
             }
 
             .loader-title {
@@ -1992,24 +2096,43 @@
 <body>
 
     <!-- =========================================
-         PAGE LOADING SCREEN
+         PAGE LOADING SCREEN — PREMIUM
     ========================================= -->
 
     <div id="pageLoader">
 
         <div class="loader-content">
 
-            <div class="loader-ring"></div>
+            <div class="loader-ring-wrap">
 
-            <div class="loader-logo">
-                <i class="fas fa-robot"></i>
+                <div class="loader-ring-glow"></div>
+
+                <svg class="loader-ring-svg" viewBox="0 0 148 148">
+                    <defs>
+                        <linearGradient id="loaderGradientStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1687ff" />
+                            <stop offset="55%" stop-color="#ffd447" />
+                            <stop offset="100%" stop-color="#1687ff" />
+                        </linearGradient>
+                    </defs>
+
+                    <circle class="loader-ring-track" cx="74" cy="74" r="69"></circle>
+                    <circle class="loader-ring-bar" id="loaderRingBar" cx="74" cy="74" r="69"></circle>
+                </svg>
+
+                <div class="loader-logo">
+                    <i class="fas fa-robot"></i>
+
+                    <span class="loader-percent" id="loaderPercent">0%</span>
+                </div>
+
             </div>
 
             <div class="loader-title">
                 FREEZER-MD
             </div>
 
-            <div class="loader-subtitle">
+            <div class="loader-subtitle" id="loaderSubtitle">
                 INITIALIZING WHATSAPP BOT
             </div>
 
@@ -2593,21 +2716,136 @@
     <script>
 
         /* =========================================
-           PAGE LOADER
+           PREMIUM PAGE LOADER LOGIC
+           - animated ring fill tied to real page-load
+             progress (resources + a minimum floor so
+             it never feels instant/jumpy)
+           - live percentage counter
+           - rotating status messages
+           - smooth blur/scale hide on completion
         ========================================= */
 
-        window.addEventListener('load', function () {
+        (function () {
 
-            const loader =
-                document.getElementById('pageLoader');
+            const loader = document.getElementById('pageLoader');
+            const ringBar = document.getElementById('loaderRingBar');
+            const percentEl = document.getElementById('loaderPercent');
+            const subtitleEl = document.getElementById('loaderSubtitle');
 
+            const CIRCUMFERENCE = 2 * Math.PI * 69; // r = 69
+
+            const statusMessages = [
+                'INITIALIZING WHATSAPP BOT',
+                'ESTABLISHING SECURE SOCKET',
+                'LOADING CORE MODULES',
+                'SYNCING SESSION DATA',
+                'ALMOST READY'
+            ];
+
+            let currentProgress = 0;
+            let targetProgress = 0;
+            let pageFullyLoaded = false;
+            let rafId = null;
+
+            function setRing(percent) {
+
+                const offset = CIRCUMFERENCE - (percent / 100) * CIRCUMFERENCE;
+
+                ringBar.style.strokeDashoffset = offset;
+
+                percentEl.textContent = Math.round(percent) + '%';
+            }
+
+            function tick() {
+
+                // ease current progress toward target
+                currentProgress += (targetProgress - currentProgress) * 0.08;
+
+                if (Math.abs(targetProgress - currentProgress) < 0.15) {
+                    currentProgress = targetProgress;
+                }
+
+                setRing(currentProgress);
+
+                if (currentProgress < 100) {
+                    rafId = requestAnimationFrame(tick);
+                } else {
+                    finishLoader();
+                }
+            }
+
+            // organic progress crawl up to 90% while
+            // real resources are still loading
+            let simulated = 0;
+
+            const simulateInterval = setInterval(() => {
+
+                if (pageFullyLoaded) {
+                    clearInterval(simulateInterval);
+                    return;
+                }
+
+                // slower as it approaches the 90% ceiling
+                const increment = (90 - simulated) * 0.06 + 0.4;
+
+                simulated = Math.min(simulated + increment, 90);
+
+                targetProgress = simulated;
+
+            }, 180);
+
+            // cycle status messages
+            let msgIndex = 0;
+
+            const msgInterval = setInterval(() => {
+
+                msgIndex = (msgIndex + 1) % statusMessages.length;
+
+                subtitleEl.style.opacity = 0;
+
+                setTimeout(() => {
+                    subtitleEl.textContent = statusMessages[msgIndex];
+                    subtitleEl.style.opacity = 1;
+                }, 250);
+
+                if (pageFullyLoaded) {
+                    clearInterval(msgInterval);
+                }
+
+            }, 950);
+
+            function finishLoader() {
+
+                if (rafId) cancelAnimationFrame(rafId);
+
+                subtitleEl.textContent = 'READY';
+                subtitleEl.style.opacity = 1;
+
+                setTimeout(() => {
+                    loader.classList.add('hide');
+                }, 350);
+            }
+
+            rafId = requestAnimationFrame(tick);
+
+            window.addEventListener('load', function () {
+
+                pageFullyLoaded = true;
+
+                targetProgress = 100;
+
+            });
+
+            // safety net: never let the loader hang forever
             setTimeout(() => {
 
-                loader.classList.add('hide');
+                pageFullyLoaded = true;
 
-            }, 700);
+                targetProgress = 100;
 
-        });
+            }, 4500);
+
+        })();
 
 
         /* =========================================
